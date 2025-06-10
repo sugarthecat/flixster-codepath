@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./App.css";
-import SearchBar from "./SearchBar";
+import SearchBar from "./SearchBar.jsx";
+import MovieList from "./MovieList.jsx";
 
 const App = () => {
   return (
@@ -12,7 +13,7 @@ const App = () => {
           <option>Sort Criteria</option>
         </select>
       </header>
-      
+      <MovieList></MovieList>
     </div>
   );
 };
