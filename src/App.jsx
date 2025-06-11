@@ -10,6 +10,7 @@ const App = () => {
   const [sortMethod, setSortMethod] = useState("popularity.desc");
   const [movies, setMovies] = useState([]);
   const [page, setPage] = useState(1);
+  const [genres, setGenres] = useState([]);
   const runSearch = (inputSearchPrompt) => {
     setMovies([]);
     changePrompt(inputSearchPrompt);
@@ -40,7 +41,6 @@ const App = () => {
           "%20"
         )}&include_adult=false&language=en-US&page=${currPage}`;
       }
-      console.log(apiCall);
       const response = await fetch(apiCall, {
         method: "GET",
         headers: {
@@ -67,8 +67,29 @@ const App = () => {
       return error;
     }
   };
+
+  const loadGenres = async () => {
+    try {
+      const apiKey = import.meta.env.VITE_API_KEY;
+      const apiCall = `https://api.themoviedb.org/3/genre/movie/list?language=en'`;
+
+      const response = await fetch(apiCall, {
+        method: "GET",
+        headers: {
+          accept: "application/json",
+          Authorization: `Bearer ${apiKey}`,
+        },
+      });
+      const data = await response.json();
+      setGenres(data);
+    } catch (error) {
+      console.error(error);
+      return error;
+    }
+  };
   useEffect(() => {
     search();
+    loadGenres();
   }, []);
   const loadMoreMovies = async () => {
     search(true);
@@ -78,28 +99,35 @@ const App = () => {
     if (sortMethod != event.target.value) {
       setSortMethod(event.target.value);
       setMovies([]);
-      search(false, true, event.target.value);
+      changePrompt("");
+      search(false, true, event.target.value, "");
     }
   };
   return (
-    <div className="App">
+    <section className="App">
       <header className="App-header">
-        <SearchBar runSearch={runSearch}></SearchBar>
-        <select value={sortMethod} onChange={handleSortMethodChange}>
-          <option value="popularity.desc">Vote Average</option>
-          <option value="original_title.asc">Alphabetical (A-Z)</option>
-          <option value="primary_release_date.desc">
-            Release Date (Newest To Oldest)
-          </option>
-        </select>
+        <h1>Flixster</h1>
+        <p>By T.J. Nickerson</p>
+        <nav>
+          <SearchBar prompt={searchPrompt} runSearch={runSearch}></SearchBar>
+          <select value={sortMethod} onChange={handleSortMethodChange}>
+            <option value="popularity.desc">Vote Average</option>
+            <option value="original_title.asc">Alphabetical (A-Z)</option>
+            <option value="primary_release_date.desc">
+              Release Date (Newest To Oldest)
+            </option>
+          </select>
+        </nav>
       </header>
       <MovieList
+        genres={genres}
         movies={movies}
         setOverlay={changeOverlay}
         loadMoreMovies={loadMoreMovies}
       ></MovieList>
       {overlay}
-    </div>
+      <footer>Created & Assigned by Codepath.</footer>
+    </section>
   );
 };
 

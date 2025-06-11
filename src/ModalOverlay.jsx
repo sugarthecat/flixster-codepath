@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import "./ModalOverlay.css";
-const ModalOverlay = ({ setOverlay, movie }) => {
+const ModalOverlay = ({ setOverlay, movie, genres }) => {
   const stopPropagation = (event) => {
     event.stopPropagation();
   };
@@ -20,7 +20,6 @@ const ModalOverlay = ({ setOverlay, movie }) => {
       );
       const data = await response.json();
       setRuntime(data.runtime);
-      console.log(data)
     } catch (error) {
       console.error(error);
       return error;
@@ -28,7 +27,7 @@ const ModalOverlay = ({ setOverlay, movie }) => {
   };
   const loadMoreMovies = () => {
     fetchData();
-  }
+  };
   useEffect(() => {
     fetchData();
   }, []);
@@ -54,6 +53,17 @@ const ModalOverlay = ({ setOverlay, movie }) => {
         </p>
         <p className="movie-overview">{movie.overview}</p>
         <img src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`} />
+        <div>
+          {movie.genre_ids.map((genre) => {
+            let output = genre;
+            for(let i = 0; i<genres.genres.length; i++){
+              if(genres.genres[i].id == genre){
+                output = genres.genres[i].name
+              }
+            }
+            return <span className="genre-card" key={genre}>{output}</span>;
+          })}
+        </div>
       </section>
     </div>
   );

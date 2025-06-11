@@ -19,7 +19,20 @@
   cursor: default;
   border-radius: 20px;
 }
+
+.modal-content img{
+  margin-bottom: 12px;
+}
+
 .movie-overview{
   padding-left: 15%;
   padding-right: 15%;
+}
+.genre-card{
+  padding:10px;
+  border-radius: 5px;
+  margin:10px 10px;
+  color:white;
+  background-color: rgb(50,50,50);
+  outline: 3px solid black;
 }

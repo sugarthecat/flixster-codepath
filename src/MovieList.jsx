@@ -1,13 +1,14 @@
 import { useState, useEffect } from "react";
 import MovieCard from "./MovieCard";
 import "./MovieList.css";
-const MovieList = ({movies, setOverlay, loadMoreMovies }) => {
+const MovieList = ({movies, setOverlay, loadMoreMovies,genres }) => {
 
   return (
-    <div>
+    <main>
       <div className="movie-list">
         {movies.map((movie) => (
           <MovieCard
+            genres={genres}
             key={movie.id}
             movie={movie}
             setOverlay={setOverlay}
@@ -23,7 +24,7 @@ const MovieList = ({movies, setOverlay, loadMoreMovies }) => {
           Load More
         </button>
       </p>
-    </div>
+    </main>
   );
 };
 
