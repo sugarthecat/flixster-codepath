@@ -1,10 +1,37 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./ModalOverlay.css";
 const ModalOverlay = ({ setOverlay, movie }) => {
   const stopPropagation = (event) => {
     event.stopPropagation();
   };
-  console.log(movie);
+  const [runtime, setRuntime] = useState(0);
+  const fetchData = async () => {
+    try {
+      const apiKey = import.meta.env.VITE_API_KEY;
+      const response = await fetch(
+        `https://api.themoviedb.org/3/movie/${movie.id}?language=en-US`,
+        {
+          method: "GET",
+          headers: {
+            accept: "application/json",
+            Authorization: `Bearer ${apiKey}`,
+          },
+        }
+      );
+      const data = await response.json();
+      setRuntime(data.runtime);
+      console.log(data)
+    } catch (error) {
+      console.error(error);
+      return error;
+    }
+  };
+  const loadMoreMovies = () => {
+    fetchData();
+  }
+  useEffect(() => {
+    fetchData();
+  }, []);
   return (
     <div
       onClick={function () {
@@ -21,6 +48,9 @@ const ModalOverlay = ({ setOverlay, movie }) => {
             month: "long",
             day: "numeric",
           })}
+        </p>
+        <p>
+          {Math.floor(runtime / 60)}h, {runtime % 60}m
         </p>
         <p className="movie-overview">{movie.overview}</p>
         <img src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`} />
