@@ -25,6 +25,32 @@
   box-shadow: 0px 0px 50px;
   
 }
+.movie-card-buttons{
+  position: absolute;
+  right: 8px;
+  bottom:8px;
+  margin:0px;
+}
+.card-button{
+  padding: 5px;
+  margin: 8px;
+  background-color: gray;
+  border-radius: 8px;
+  transition-duration: 250ms;
+}
+.card-button:hover{
+  padding: 5px;
+  margin: 8px;
+  background-color: lightgray;
+  border-radius: 8px;
+  box-shadow: 5px 5px black;
+}
+.card-button.watched{
+  background-color: lightblue;
+}
+.card-button.liked{
+  background-color: lightpink;
+}
 .movie-card-rating{
   position: absolute;
   background-color: black;

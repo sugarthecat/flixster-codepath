@@ -11,11 +11,16 @@ const App = () => {
   const [movies, setMovies] = useState([]);
   const [page, setPage] = useState(1);
   const [genres, setGenres] = useState([]);
+
+  const [faves, setFaves] = useState([]);
+  const [watched, setWatched] = useState([]);
+  //
   const runSearch = (inputSearchPrompt) => {
     setMovies([]);
     changePrompt(inputSearchPrompt);
     search(false, true, undefined, inputSearchPrompt);
   };
+
   const search = async (
     pageAhead = false,
     newStart = false,
@@ -95,6 +100,36 @@ const App = () => {
     search(true);
   };
 
+  const toggleStatus = (movie, list) => {
+    let inList = false;
+    let newList = [];
+    if (list == "faves") {
+      for (let i = 0; i < faves.length; i++) {
+        if(faves[i].id == movie.id){
+          inList = true;
+        }else{
+          newList.push(faves[i])
+        }
+      }
+      if(!inList){
+        newList.push(movie)
+      }
+      setFaves(newList)
+    }
+    if (list == "watched") {
+      for (let i = 0; i < watched.length; i++) {
+        if(watched[i].id == movie.id){
+          inList = true;
+        }else{
+          newList.push(watched[i])
+        }
+      }
+      if(!inList){
+        newList.push(movie)
+      }
+      setWatched(newList)
+    }
+  };
   const handleSortMethodChange = (event) => {
     if (sortMethod != event.target.value) {
       setSortMethod(event.target.value);
@@ -124,6 +159,9 @@ const App = () => {
         movies={movies}
         setOverlay={changeOverlay}
         loadMoreMovies={loadMoreMovies}
+        toggleStatus = {toggleStatus}
+        faves={faves}
+        watched={watched}
       ></MovieList>
       {overlay}
       <footer>Created & Assigned by Codepath.</footer>
