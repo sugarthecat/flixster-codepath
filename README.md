@@ -2,7 +2,7 @@
 
 Submitted by: **TJ Nickerson**
 
-Estimated time spent: **#** hours spent in total
+Estimated time spent: **20** hours spent in total
 
 Deployed Application (**required**): [Flixster Deployed Site](https://flixster-codepath.onrender.com/)
 
@@ -88,15 +88,15 @@ Deployed Application (**required**): [Flixster Deployed Site](https://flixster-c
   - [x] If the movie is already watched:
     - [x] Clicking on the visual element should mark the movie as *not* watched.
     - [x] There should be visual feedback (such as the eye turning a different color) to show that the movie has not been watched.
-- [ ] **Sidebar**
-  - [ ] The website includes a side navigation bar.
-  - [ ] The sidebar has three pages:
-    - [ ] Home
-    - [ ] Favorites
-    - [ ] Watched
-  - [ ] The Home page displays all current movies in a grid view, the search bar, and the sort movies drop-down.
-  - [ ] The Favorites page displays all favorited movies in a grid view.
-  - [ ] The Watched page displays all watched movies in a grid view.
+- [x] **Sidebar**
+  - [x] The website includes a side navigation bar.
+  - [x] The sidebar has three pages:
+    - [x] Home
+    - [x] Favorites
+    - [x] Watched
+  - [x] The Home page displays all current movies in a grid view, the search bar, and the sort movies drop-down.
+  - [x] The Favorites page displays all favorited movies in a grid view.
+  - [x] The Watched page displays all watched movies in a grid view.
 
 ### Walkthrough Video
 
@@ -108,15 +108,15 @@ Deployed Application (**required**): [Flixster Deployed Site](https://flixster-c
 
 * Did the topics discussed in your labs prepare you to complete the assignment? Be specific, which features in your weekly assignment did you feel unprepared to complete?
 
-Add your response here
+Yes, the labs were very helpful. Specifically, a more in-depth explanation of components and an overview of diffeerent ways to make them would also be good! Having a class heirarchy wouldve been a good idea, but that wasn't really gone over in this.
 
 * If you had more time, what would you have done differently? Would you have added additional features? Changed the way your project responded to a particular event, etc.
   
-Add your response here
+I'm satsfied with this project and hwo ti turned out, and I don't think any more features would've really been interesting. Maybe an account system, but I'd really like to focus on some data aggregation.
 
 * Reflect on your project demo, what went well? Were there things that maybe didn't go as planned? Did you notice something that your peer did that you would like to try next time?
 
-Add your response here
+I think my project demo went well, if being a little standard.
 
 ### Open-source libraries used
 
@@ -124,4 +124,4 @@ Add your response here
 
 ### Shout out
 
-Give a shout out to somebody from your cohort that especially helped you during your project. This can be a fellow peer, instructor, TA, mentor, etc.
+Bob & Terrence were great for all their feedback on the project!
